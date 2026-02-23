@@ -46,23 +46,80 @@ body {
   padding: 40px 0;
 }
 
-/* ===== IMAGE (4/5 RATIO) ===== */
+/* ===== CAROUSEL ===== */
 .hero-image {
+  position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: 12px;
 }
 
-.hero-image img {
+.carousel-track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+}
+
+.carousel-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
 }
 
-.hero-image img:hover {
-  transform: scale(1.04);
+/* ===== ARROWS (DESKTOP ONLY) ===== */
+.carousel-btn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* ===== DOTS ===== */
+.carousel-dots {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.carousel-dots span {
+  width: 8px;
+  height: 8px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.carousel-dots span.active {
+  background: #fff;
 }
 
 /* ===== CONTENT ===== */
@@ -126,7 +183,7 @@ body {
   border-color: #000;
 }
 
-/* ===== CTA BUTTON FULL WIDTH ===== */
+/* ===== CTA BUTTON ===== */
 .cta-button {
   display: block;
   width: 100%;
@@ -215,6 +272,14 @@ footer {
   .benefit-item {
     flex: 1;
   }
+
+  .carousel-btn {
+    display: block;
+  }
+
+  .carousel-track {
+    overflow-x: hidden;
+  }
 }
 
 </style>
@@ -231,7 +296,22 @@ ENVÍO GRATIS HOY • REGIÓN METROPOLITANA
 <section class="hero">
 
   <div class="hero-image">
-    <img src="Polera Blanca Frontal.jpg" alt="Urban Hoodie Oversize">
+
+    <button class="carousel-btn prev">&#10094;</button>
+    <button class="carousel-btn next">&#10095;</button>
+
+    <div class="carousel-track" id="carousel">
+      <div class="carousel-slide"><img src="foto1.jpg" alt="Producto 1"></div>
+      <div class="carousel-slide"><img src="foto2.jpg" alt="Producto 2"></div>
+      <div class="carousel-slide"><img src="foto3.jpg" alt="Producto 3"></div>
+    </div>
+
+    <div class="carousel-dots" id="dots">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+    </div>
+
   </div>
 
   <div class="hero-content">
@@ -243,28 +323,22 @@ ENVÍO GRATIS HOY • REGIÓN METROPOLITANA
       Edición limitada para quienes marcan tendencia.
     </p>
 
-    <!-- SIZE SELECTOR -->
     <div class="size-selector">
       <span class="size-label">TALLA</span>
       <div class="size-options">
         <input type="radio" id="size-s" name="size">
         <label for="size-s">S</label>
-
         <input type="radio" id="size-m" name="size" checked>
         <label for="size-m">M</label>
-
         <input type="radio" id="size-l" name="size">
         <label for="size-l">L</label>
-
         <input type="radio" id="size-xl" name="size">
         <label for="size-xl">XL</label>
       </div>
     </div>
 
-    <!-- CTA -->
     <a href="#" class="cta-button">COMPRAR AHORA</a>
 
-    <!-- TRUST -->
     <div class="trust-line">
       <span>🔒 Pago Seguro</span>
       <span>📦 Envío a todo Chile</span>
@@ -274,29 +348,51 @@ ENVÍO GRATIS HOY • REGIÓN METROPOLITANA
 
 </section>
 
-<section class="benefits">
-  <h2>Por qué elegirlo</h2>
-  <div class="benefit-list">
-    <div class="benefit-item">
-      <div class="benefit-icon">✔</div>
-      <div>Algodón premium 100%</div>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">✔</div>
-      <div>Diseño exclusivo edición limitada</div>
-    </div>
-    <div class="benefit-item">
-      <div class="benefit-icon">✔</div>
-      <div>Envío rápido a todo Chile</div>
-    </div>
-  </div>
-</section>
-
 </div>
 
 <footer>
 © 2026 Urban Drop — Todos los derechos reservados
 </footer>
+
+<script>
+const track = document.getElementById('carousel');
+const dots = document.querySelectorAll('#dots span');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+
+let index = 0;
+const total = 3;
+
+function updateCarousel(i) {
+  index = i;
+  track.scrollTo({
+    left: track.offsetWidth * index,
+    behavior: 'smooth'
+  });
+  dots.forEach(dot => dot.classList.remove('active'));
+  dots[index].classList.add('active');
+}
+
+nextBtn.addEventListener('click', () => {
+  index = (index + 1) % total;
+  updateCarousel(index);
+});
+
+prevBtn.addEventListener('click', () => {
+  index = (index - 1 + total) % total;
+  updateCarousel(index);
+});
+
+dots.forEach((dot, i) => {
+  dot.addEventListener('click', () => updateCarousel(i));
+});
+
+track.addEventListener('scroll', () => {
+  const slideIndex = Math.round(track.scrollLeft / track.offsetWidth);
+  dots.forEach(dot => dot.classList.remove('active'));
+  if (dots[slideIndex]) dots[slideIndex].classList.add('active');
+});
+</script>
 
 </body>
 </html>
