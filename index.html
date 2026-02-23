@@ -282,6 +282,58 @@ footer {
   }
 }
 
+/* AJUSTE DE SIMETRÍA Y SUBIDA DE CONTENIDO */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Esto centra todo el bloque derecho verticalmente */
+  padding-top: 0 !important; 
+}
+
+.hero-content h1 {
+  margin-top: -30px; /* Esto sube el título y el precio */
+  margin-bottom: 5px;
+}
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #888;
+  display: block;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+/* DISEÑO DE LOS CÍRCULOS DE COLOR */
+.color-selector {
+  margin-bottom: 25px;
+}
+
+.color-options {
+  display: flex;
+  gap: 15px;
+}
+
+.color-options input {
+  display: none;
+}
+
+.color-options label {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  display: inline-block;
+}
+
+/* EFECTO CUANDO SELECCIONAS UN COLOR */
+.color-options input:checked + label {
+  border-color: #000; /* Aparece un borde negro cuando lo eliges */
+  transform: scale(1.15);
+}
+  
 </style>
 </head>
 
@@ -325,6 +377,20 @@ ENVÍO GRATIS HOY • REGIÓN METROPOLITANA
       Edición limitada para quienes marcan tendencia.
     </p>
 
+    <div class="color-selector">
+  <span class="section-label">COLOR</span>
+  <div class="color-options">
+    <input type="radio" id="color-white" name="color" checked>
+    <label for="color-white" style="background-color: #ffffff; border: 1px solid #ddd;"></label>
+
+    <input type="radio" id="color-black" name="color">
+    <label for="color-black" style="background-color: #000000;"></label>
+
+    <input type="radio" id="color-grey" name="color">
+    <label for="color-grey" style="background-color: #D3D3D3;"></label>
+  </div>
+</div>
+    
     <div class="size-selector">
       <span class="size-label">TALLA</span>
       <div class="size-options">
