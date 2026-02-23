@@ -46,53 +46,119 @@ body {
   padding: 40px 0;
 }
 
+/* ===== IMAGE (4/5 RATIO) ===== */
+.hero-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
 .hero-image img {
   width: 100%;
-  border-radius: 14px;
+  height: 100%;
+  object-fit: cover;
   transition: transform 0.4s ease;
 }
 
 .hero-image img:hover {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
+/* ===== CONTENT ===== */
 .hero-content h1 {
-  font-size: 28px;
+  font-size: 32px;
+  font-weight: 900;
   margin-bottom: 10px;
+  letter-spacing: -0.5px;
 }
 
 .price {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 26px;
+  font-weight: 700;
+  color: #1a1a1a;
   margin-bottom: 20px;
 }
 
 .description {
   color: #555;
   margin-bottom: 25px;
+  font-size: 15px;
 }
 
-/* ===== CTA BUTTON ===== */
-.cta-button {
-  display: inline-block;
+/* ===== SIZE SELECTOR ===== */
+.size-selector {
+  margin-bottom: 25px;
+}
+
+.size-label {
+  font-size: 13px;
+  margin-bottom: 10px;
+  display: block;
+  letter-spacing: 1px;
+}
+
+.size-options {
+  display: flex;
+  gap: 10px;
+}
+
+.size-options input {
+  display: none;
+}
+
+.size-options label {
+  width: 45px;
+  height: 45px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.size-options input:checked + label {
   background: #000;
   color: #fff;
-  padding: 14px 28px;
-  border-radius: 12px;
+  border-color: #000;
+}
+
+/* ===== CTA BUTTON FULL WIDTH ===== */
+.cta-button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #000;
+  color: #fff;
+  padding: 16px;
+  border-radius: 10px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
 }
 
 .cta-button:hover {
-  background: #111;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* ===== TRUST LINE ===== */
+.trust-line {
+  margin-top: 12px;
+  font-size: 13px;
+  color: #666;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
 
 /* ===== BENEFITS ===== */
 .benefits {
-  margin-top: 60px;
+  margin-top: 70px;
 }
 
 .benefits h2 {
@@ -111,12 +177,12 @@ body {
   align-items: center;
   gap: 15px;
   background: #f7f7f7;
-  padding: 15px;
+  padding: 18px;
   border-radius: 12px;
 }
 
 .benefit-icon {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* ===== FOOTER ===== */
@@ -139,7 +205,7 @@ footer {
   }
 
   .hero-content {
-    padding-left: 50px;
+    padding-left: 60px;
   }
 
   .benefit-list {
@@ -157,7 +223,7 @@ footer {
 <body>
 
 <div class="top-bar">
-ENVÍO GRATIS HOY • REGION METROPOLITANA
+ENVÍO GRATIS HOY • REGIÓN METROPOLITANA
 </div>
 
 <div class="container">
@@ -165,17 +231,45 @@ ENVÍO GRATIS HOY • REGION METROPOLITANA
 <section class="hero">
 
   <div class="hero-image">
-    <img src="https://images.unsplash.com/photo-1528701800489-20be7c6a2b41" alt="Producto Streetwear">
+    <img src="https://images.unsplash.com/photo-1528701800489-20be7c6a2b41" alt="Urban Hoodie Oversize">
   </div>
 
   <div class="hero-content">
     <h1>Urban Hoodie Oversize</h1>
     <p class="price">$39.990</p>
+
     <p class="description">
       Diseño minimalista, tela premium y corte oversize auténtico.
       Edición limitada para quienes marcan tendencia.
     </p>
+
+    <!-- SIZE SELECTOR -->
+    <div class="size-selector">
+      <span class="size-label">TALLA</span>
+      <div class="size-options">
+        <input type="radio" id="size-s" name="size">
+        <label for="size-s">S</label>
+
+        <input type="radio" id="size-m" name="size" checked>
+        <label for="size-m">M</label>
+
+        <input type="radio" id="size-l" name="size">
+        <label for="size-l">L</label>
+
+        <input type="radio" id="size-xl" name="size">
+        <label for="size-xl">XL</label>
+      </div>
+    </div>
+
+    <!-- CTA -->
     <a href="#" class="cta-button">COMPRAR AHORA</a>
+
+    <!-- TRUST -->
+    <div class="trust-line">
+      <span>🔒 Pago Seguro</span>
+      <span>📦 Envío a todo Chile</span>
+    </div>
+
   </div>
 
 </section>
