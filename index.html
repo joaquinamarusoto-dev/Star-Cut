@@ -3,86 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Página</title>
+<title>Urban Drop - Producto Oficial</title>
 
 <style>
-body {
+
+/* ===== RESET ===== */
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+  color: #111111;
+  line-height: 1.5;
 }
 
-header {
+/* ===== TOP BAR ===== */
+.top-bar {
+  background: #000;
+  color: #fff;
   text-align: center;
-  padding: 40px 20px;
-  background: #111;
-  color: white;
+  padding: 8px;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 
-h1 {
+/* ===== CONTAINER ===== */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ===== HERO ===== */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 40px 0;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 14px;
+  transition: transform 0.4s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.03);
+}
+
+.hero-content h1 {
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
-section {
-  background: white;
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 8px;
+.price {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
+.description {
+  color: #555;
+  margin-bottom: 25px;
+}
+
+/* ===== CTA BUTTON ===== */
+.cta-button {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #111;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* ===== BENEFITS ===== */
+.benefits {
+  margin-top: 60px;
+}
+
+.benefits h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.benefit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 12px;
+}
+
+.benefit-icon {
+  font-size: 20px;
+}
+
+/* ===== FOOTER ===== */
 footer {
   text-align: center;
-  margin-top: 40px;
-  padding: 20px;
-  font-size: 14px;
-  color: #666;
+  padding: 40px 0;
+  font-size: 13px;
+  color: #777;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-  header {
-    padding: 30px 10px;
+/* ===== DESKTOP ===== */
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    align-items: center;
   }
-  h1 {
-    font-size: 22px;
+
+  .hero-image, .hero-content {
+    flex: 1;
+  }
+
+  .hero-content {
+    padding-left: 50px;
+  }
+
+  .benefit-list {
+    flex-direction: row;
+  }
+
+  .benefit-item {
+    flex: 1;
   }
 }
+
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Mi Página Estática</h1>
-  <p>Una web simple, rápida y adaptable</p>
-</header>
+<div class="top-bar">
+ENVÍO GRATIS HOY • STOCK LIMITADO
+</div>
 
 <div class="container">
 
-  <section>
-    <h2>Sobre mí</h2>
-    <p>
-      Aquí puedes escribir una descripción breve. 
-      Esta página es completamente estática y se adapta automáticamente a celulares.
-    </p>
-  </section>
+<section class="hero">
 
-  <section>
-    <h2>Contacto</h2>
-    <p>Email: contacto@ejemplo.com</p>
-  </section>
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1528701800489-20be7c6a2b41" alt="Producto Streetwear">
+  </div>
+
+  <div class="hero-content">
+    <h1>Urban Hoodie Oversize</h1>
+    <p class="price">$39.990</p>
+    <p class="description">
+      Diseño minimalista, tela premium y corte oversize auténtico.
+      Edición limitada para quienes marcan tendencia.
+    </p>
+    <a href="#" class="cta-button">COMPRAR AHORA</a>
+  </div>
+
+</section>
+
+<section class="benefits">
+  <h2>Por qué elegirlo</h2>
+  <div class="benefit-list">
+    <div class="benefit-item">
+      <div class="benefit-icon">✔</div>
+      <div>Algodón premium 100%</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">✔</div>
+      <div>Diseño exclusivo edición limitada</div>
+    </div>
+    <div class="benefit-item">
+      <div class="benefit-icon">✔</div>
+      <div>Envío rápido a todo Chile</div>
+    </div>
+  </div>
+</section>
 
 </div>
 
 <footer>
-  © 2026 - Todos los derechos reservados
+© 2026 Urban Drop — Todos los derechos reservados
 </footer>
 
 </body>
