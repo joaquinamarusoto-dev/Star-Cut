@@ -333,12 +333,46 @@ footer {
   border-color: #000; /* Aparece un borde negro cuando lo eliges */
   transform: scale(1.15);
 }
+
+/* --- POSICIONAMIENTO DEL LOGO STAR --- */
+.brand-logo {
+    position: absolute; /* Esto permite que flote sobre el contenido */
+    top: 65px;          /* Lo ubica justo debajo de la barra negra */
+    left: 40px;         /* Lo separa del borde izquierdo */
+    z-index: 1000;      /* Asegura que siempre esté al frente */
+}
+
+.brand-logo img {
+    width: 60px;        /* Tamaño equilibrado para que no sature */
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo img:hover {
+    transform: scale(1.1); /* Efecto sutil al pasar el mouse */
+}
+
+/* Ajuste para que en celulares se vea más pequeño y no tape nada */
+@media (max-width: 768px) {
+    .brand-logo {
+        top: 55px;
+        left: 20px;
+    }
+    .brand-logo img {
+        width: 45px;
+    }
+}  
   
 </style>
 </head>
 
 <body>
 
+<div class="brand-logo">
+    <img src="LOGO_STAR.png" alt="Star Logo">
+</div>  
+  
 <div class="top-bar">
 ENVÍO GRATIS HOY • REGIÓN METROPOLITANA
 </div>
