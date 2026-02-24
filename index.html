@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+x<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -379,7 +379,7 @@ footer {
     z-index: 2000;
 }
 
-/* Efecto de brillo (Sweep) */
+/* Brillo más lento (ajustado a 8 segundos) */
 .top-bar::after {
     content: '';
     position: absolute;
@@ -388,13 +388,14 @@ footer {
     width: 40%;
     height: 100%;
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: shine-sweep 8s infinite;
+    /* Cambié 4s por 8s para que sea el doble de lento */
+    animation: shine-sweep 8s infinite; 
 }
 
 @keyframes shine-sweep {
     0% { left: -150%; }
-    30% { left: 150%; } /* El brillo cruza la pantalla */
-    100% { left: 150%; } /* Pausa antes de volver a empezar */
+    20% { left: 150%; } /* El brillo cruza la pantalla con calma */
+    100% { left: 150%; } /* Pausa larga antes de repetir para no saturar */
 }
 
 /* Animación de las Estrellas */
