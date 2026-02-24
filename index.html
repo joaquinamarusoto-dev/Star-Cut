@@ -364,43 +364,58 @@ footer {
     }
 }  
 
-/* Animación de las estrellas (Parpadeo) */
-.star-blink {
-    color: #ffcc00; /* Dorado Star */
-    display: inline-block;
-    animation: star-glow 2s infinite alternate;
-    margin: 0 8px;
-    font-size: 1.2em;
+/* --- ESTILO BARRA SUPERIOR CON BRILLO --- */
+.top-bar {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative; /* Clave para que el brillo no se escape */
+    overflow: hidden;    /* Corta el brillo para que no ensanche la pantalla */
+    width: 100%;
+    z-index: 2000;
 }
 
-@keyframes star-glow {
-    0% {
-        transform: scale(1);
-        text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(1.3);
-        text-shadow: 0 0 15px rgba(255, 204, 0, 1);
-        opacity: 1;
-    }
-}
-
-/* El brillo (sweep) que recorre la barra negra */
+/* Efecto de brillo (Sweep) */
 .top-bar::after {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 30%;
+    left: -150%;
+    width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
     animation: shine-sweep 4s infinite;
 }
 
 @keyframes shine-sweep {
-    to {
-        left: 200%;
+    0% { left: -150%; }
+    30% { left: 150%; } /* El brillo cruza la pantalla */
+    100% { left: 150%; } /* Pausa antes de volver a empezar */
+}
+
+/* Animación de las Estrellas */
+.star-blink {
+    color: #ffcc00;
+    display: inline-block;
+    animation: star-glow 1.5s infinite alternate;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+@keyframes star-glow {
+    from { 
+        opacity: 0.6; 
+        transform: scale(1); 
+        text-shadow: 0 0 2px rgba(255,204,0,0.5);
+    }
+    to { 
+        opacity: 1; 
+        transform: scale(1.3); 
+        text-shadow: 0 0 10px rgba(255,204,0,1);
     }
 }
   
@@ -415,7 +430,9 @@ footer {
 </div>  
   
 <div class="top-bar">
-    <span class="star-blink">★</span> ENVÍO GRATIS POR LA COMPRA DE 3 O MÁS PRENDAS <span class="star-blink">★</span>
+    <span class="star-blink">★</span> 
+    ENVÍO GRATIS POR LA COMPRA DE 3 O MÁS PRENDAS • DESPACHO A TODO CHILE 
+    <span class="star-blink">★</span>
 </div>
 
 <div class="container">
